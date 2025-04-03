@@ -28,7 +28,14 @@ export const ProjectsSection = () => {
           let index = 0;
           const timer = setInterval(() => {
             if (index < displayedProjects.length) {
-              setVisibleProjects(prev => [...prev, displayedProjects[index].id]);
+              setVisibleProjects(prev => {
+                // Make sure the project exists and has an id before adding it
+                const projectId = displayedProjects[index]?.id;
+                if (projectId !== undefined) {
+                  return [...prev, projectId];
+                }
+                return prev;
+              });
               index++;
             } else {
               clearInterval(timer);
