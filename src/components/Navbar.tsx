@@ -39,7 +39,7 @@ export const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 py-4">
+      <div className="w-4/5 mx-auto py-4">
         <div className="flex items-center justify-between">
           <a href="#home" className="text-2xl font-bold gradient-text">
             Portfolio
