@@ -1,6 +1,5 @@
-
 import { Button } from "@/components/ui/button";
-import { ArrowDown, GitHub, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 
 export const HeroSection = () => {
   return (
@@ -48,7 +47,7 @@ export const HeroSection = () => {
                 className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors"
                 aria-label="GitHub profile"
               >
-                <GitHub size={24} />
+                <Github size={24} />
               </a>
               <a 
                 href="https://linkedin.com" 
