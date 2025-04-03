@@ -138,4 +138,31 @@
   .progress-bar-fill {
     @apply absolute top-0 left-0 h-full rounded-full transition-all duration-500 ease-out;
   }
+
+  /* Custom project reveal animation */
+  .reveal-animation {
+    animation: reveal 1.2s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  }
+
+  @keyframes reveal {
+    0% {
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  /* Typing cursor animation styles */
+  .typed-cursor {
+    @apply text-primary;
+    animation: blink 0.7s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
 }

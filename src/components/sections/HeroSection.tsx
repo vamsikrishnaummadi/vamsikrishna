@@ -1,8 +1,19 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { TypeAnimation } from 'react-type-animation';
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export const HeroSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+    });
+  }, []);
+
   return (
     <section
       id="home"
@@ -13,7 +24,7 @@ export const HeroSection = () => {
       
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-6" data-aos="fade-right">
             <div>
               <h2 className="text-xl md:text-2xl font-medium text-primary mb-2">
                 Hello, I'm
@@ -22,7 +33,22 @@ export const HeroSection = () => {
                 Alex Morgan
               </h1>
               <h3 className="text-xl md:text-2xl text-gray-600 dark:text-gray-300">
-                Full Stack <span className="gradient-text font-semibold">Web Developer</span>
+                <TypeAnimation
+                  sequence={[
+                    'Full Stack Web Developer',
+                    2000,
+                    'UI/UX Designer',
+                    2000,
+                    'React Specialist',
+                    2000,
+                    'JavaScript Engineer',
+                    2000,
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Infinity}
+                  className="gradient-text font-semibold"
+                />
               </h3>
             </div>
             
@@ -32,15 +58,15 @@ export const HeroSection = () => {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <Button asChild>
+              <Button asChild data-aos="fade-up" data-aos-delay="200">
                 <a href="#contact">Get in touch</a>
               </Button>
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild data-aos="fade-up" data-aos-delay="300">
                 <a href="#projects">View my work</a>
               </Button>
             </div>
             
-            <div className="flex items-center space-x-5 pt-4">
+            <div className="flex items-center space-x-5 pt-4" data-aos="fade-up" data-aos-delay="400">
               <a 
                 href="https://github.com" 
                 target="_blank" 
@@ -69,7 +95,7 @@ export const HeroSection = () => {
             </div>
           </div>
           
-          <div className="flex justify-center lg:justify-end animate-fade-in">
+          <div className="flex justify-center lg:justify-end" data-aos="fade-left">
             <div className="relative">
               <div className="w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white shadow-xl dark:border-gray-800 animate-floating">
                 <img
