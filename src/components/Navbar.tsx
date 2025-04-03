@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -14,8 +15,8 @@ const navLinks = [
 ];
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,14 +30,6 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
 
   return (
     <header
@@ -68,43 +61,35 @@ export const Navbar = () => {
             </div>
           </nav>
 
-          {/* Mobile Nav Toggle */}
+          {/* Mobile Nav */}
           <div className="flex md:hidden items-center space-x-2">
             <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleMenu}
-              className="md:hidden"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label="Toggle menu"
+                >
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="p-0">
+                <div className="flex flex-col h-full justify-center items-center space-y-6 py-8">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="text-xl font-medium text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
-        </div>
-      </div>
-
-      {/* Mobile Nav Menu */}
-      <div
-        className={`md:hidden fixed inset-0 z-40 bg-white dark:bg-gray-900 transform transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex flex-col h-full justify-center items-center space-y-6 pt-16">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={closeMenu}
-              className="text-xl font-medium text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
         </div>
       </div>
     </header>

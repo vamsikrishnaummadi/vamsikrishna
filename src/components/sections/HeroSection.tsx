@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 
@@ -5,14 +6,14 @@ export const HeroSection = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center py-20 pt-32 relative overflow-hidden"
+      className="min-h-screen flex items-center py-12 md:py-16 lg:py-20 pt-28 md:pt-32 relative overflow-hidden"
     >
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary/5 rounded-bl-full -z-10 dark:bg-primary/10"></div>
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-primary/5 rounded-tr-full -z-10 dark:bg-primary/10"></div>
       
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 animate-fade-in">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="space-y-6 animate-fade-in">
             <div>
               <h2 className="text-xl md:text-2xl font-medium text-primary mb-2">
                 Hello, I'm
@@ -70,9 +71,9 @@ export const HeroSection = () => {
           
           <div className="flex justify-center lg:justify-end animate-fade-in">
             <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl dark:border-gray-800 animate-floating">
+              <div className="w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white shadow-xl dark:border-gray-800 animate-floating">
                 <img
-                  src="/placeholder.svg"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
                   alt="Alex Morgan - Web Developer"
                   className="w-full h-full object-cover"
                 />

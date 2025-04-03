@@ -48,9 +48,9 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
           {filteredSkills.map((skill) => (
-            <SkillCard key={skill.name} skill={skill} />
+            <SkillTag key={skill.name} skill={skill} />
           ))}
         </div>
       </div>
@@ -58,19 +58,10 @@ export const SkillsSection = () => {
   );
 };
 
-const SkillCard = ({ skill }: { skill: Skill }) => {
+const SkillTag = ({ skill }: { skill: Skill }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md animate-fade-in">
-      <div className="flex justify-between items-center mb-3">
-        <h3 className="text-lg font-semibold">{skill.name}</h3>
-        <span className="text-sm font-medium text-primary">{skill.proficiency}%</span>
-      </div>
-      <div className="progress-bar">
-        <div
-          className="progress-bar-fill bg-primary"
-          style={{ width: `${skill.proficiency}%` }}
-        ></div>
-      </div>
+    <div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all hover:border-primary dark:hover:border-primary">
+      <span className="font-medium">{skill.name}</span>
     </div>
   );
 };
