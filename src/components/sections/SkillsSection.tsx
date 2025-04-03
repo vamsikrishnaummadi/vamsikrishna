@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { skills, Skill } from "@/data/skills";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -10,9 +9,12 @@ export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const [animatedSkills, setAnimatedSkills] = useState<string[]>([]);
 
-  const filteredSkills = activeCategory === "all" 
-    ? skills 
-    : skills.filter(skill => skill.category === activeCategory);
+  // Memoize filtered skills to avoid unnecessary recalculations
+  const filteredSkills = useMemo(() => {
+    return activeCategory === "all" 
+      ? skills 
+      : skills.filter(skill => skill.category === activeCategory);
+  }, [activeCategory]);
 
   const categories: { value: Category; label: string }[] = [
     { value: "all", label: "All Skills" },
@@ -31,14 +33,14 @@ export const SkillsSection = () => {
 
     // Reset animated skills when category changes
     setAnimatedSkills([]);
-    
-    // Gradually reveal skills one by one with a staggered effect
+
+    // Animate skills with a staggered effect
     let index = 0;
     const timer = setInterval(() => {
       if (index < filteredSkills.length) {
-        const skillName = filteredSkills[index].name;
-        if (skillName) {
-          setAnimatedSkills(prev => [...prev, skillName]);
+        const skill = filteredSkills[index];
+        if (skill?.name) { // ✅ Check if skill is defined before accessing `.name`
+          setAnimatedSkills(prev => [...prev, skill.name]);
         }
         index++;
       } else {
@@ -46,7 +48,7 @@ export const SkillsSection = () => {
       }
     }, 100);
 
-    return () => clearInterval(timer);
+    return () => clearInterval(timer); // ✅ Clear interval on unmount or category change
   }, [activeCategory, filteredSkills]);
 
   const handleCategoryChange = (category: Category) => {
@@ -56,7 +58,7 @@ export const SkillsSection = () => {
   return (
     <section id="skills" className="py-20">
       <div className="mx-auto">
-        <div className="flex flex-col items-center text-center mb-12" data-aos="fade-up">
+        <div className="flex flex-col items-center text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             My <span className="gradient-text">Skills</span>
           </h2>
@@ -66,7 +68,8 @@ export const SkillsSection = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-12" data-aos="fade-up" data-aos-delay="200">
+        {/* Category buttons */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
           {categories.map((category) => (
             <button
               key={category.value}
@@ -82,10 +85,11 @@ export const SkillsSection = () => {
           ))}
         </div>
 
+        {/* Skills grid */}
         <div 
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
           data-aos="fade-up"
-          data-aos-delay="400"
+          data-aos-delay="200"
         >
           {filteredSkills.map((skill) => (
             <SkillTag 
@@ -112,27 +116,13 @@ const SkillTag = ({ skill, isAnimated }: { skill: Skill; isAnimated: boolean }) 
       style={{
         transform: isAnimated ? "translateY(0) rotate(0deg)" : "translateY(20px) rotate(-3deg)"
       }}
-    >
-      {/* Progress bar for skill proficiency */}
-      <div className="progress-bar mt-2">
-        <div 
-          className="progress-bar-fill bg-primary"
-          style={{ 
-            width: isAnimated ? `${skill.proficiency}%` : "0%",
-            transition: "width 1s ease-out"
-          }}
-        ></div>
-      </div>
-      
+    > 
       {/* Animated glow effect */}
       {isAnimated && (
         <div className="absolute inset-0 shine-effect"></div>
       )}
       
       <span className="font-medium">{skill.name}</span>
-      <span className="text-xs text-gray-500 dark:text-gray-400 block mt-1">
-        {isAnimated ? `${skill.proficiency}%` : ""}
-      </span>
     </div>
   );
 };

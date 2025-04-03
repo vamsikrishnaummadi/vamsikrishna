@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import NameLogo from ".././assets/nameLogo.png";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
@@ -41,9 +42,10 @@ export const Navbar = () => {
     >
       <div className="w-4/5 mx-auto py-4">
         <div className="flex items-center justify-between">
-          <a href="#home" className="text-2xl font-bold gradient-text">
+          <img src={NameLogo} alt="Logo" className="w-28 h-7" />
+          {/* <a href="#home" className="text-2xl font-bold gradient-text">
             Portfolio
-          </a>
+          </a> */}
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-1">

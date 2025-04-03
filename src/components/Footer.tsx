@@ -1,5 +1,6 @@
 
 import { ArrowUp } from "lucide-react";
+import NameLogo from ".././assets/nameLogo.png";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,9 +17,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <a href="#home" className="text-2xl font-bold gradient-text">
-              Portfolio
-            </a>
+            <img src={NameLogo} alt="logo" className="w-28 h-7" />
             <p className="mt-2 text-gray-400 max-w-md">
               Creating exceptional digital experiences with modern technologies
               and clean, efficient code.
@@ -34,7 +33,7 @@ export const Footer = () => {
               <ArrowUp className="text-primary" size={24} />
             </button>
             <p className="text-gray-400 text-sm">
-              &copy; {currentYear} Alex Morgan. All rights reserved.
+              &copy; {currentYear} Vamsi Krishna. All rights reserved.
             </p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-
+import Profile from "../../assets/Profile.jpg";
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
 
@@ -19,12 +19,12 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1 animate-fade-in">
             <h3 className="text-2xl font-semibold mb-4">
-              I'm Alex, a Full Stack Developer with passion for creating intuitive user experiences
+              I'm vamsi krishna, a Full Stack Developer with passion for creating intuitive user experiences
             </h3>
             
             <div className="space-y-4 text-gray-600 dark:text-gray-300">
               <p>
-                With over 5 years of experience in web development, I specialize in building modern, responsive websites and web applications that deliver exceptional user experiences.
+                With over 2.5 years of experience in web development, I specialize in building modern, responsive websites and web applications that deliver exceptional user experiences.
               </p>
               <p>
                 My journey in web development began with a fascination for creating interactive interfaces. Since then, I've worked with various technologies and frameworks to deliver scalable and maintainable solutions for clients across different industries.
@@ -48,8 +48,8 @@ export const AboutSection = () => {
             <div className="relative">
               <div className="glass-card rounded-2xl overflow-hidden p-2 shadow-xl rotate-3">
                 <img
-                  src="/placeholder.svg"
-                  alt="About Alex Morgan"
+                  src={Profile}
+                  alt="About vamsi krishna ummadi"
                   className="w-full h-80 object-cover rounded-xl"
                 />
               </div>
@@ -61,7 +61,7 @@ export const AboutSection = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center animate-fade-in">
-            <h4 className="text-4xl font-bold text-primary mb-2">5+</h4>
+            <h4 className="text-4xl font-bold text-primary mb-2">2+</h4>
             <p className="text-gray-600 dark:text-gray-300">Years Experience</p>
           </div>
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center animate-fade-in">
@@ -69,11 +69,11 @@ export const AboutSection = () => {
             <p className="text-gray-600 dark:text-gray-300">Projects Completed</p>
           </div>
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center animate-fade-in">
-            <h4 className="text-4xl font-bold text-primary mb-2">20+</h4>
-            <p className="text-gray-600 dark:text-gray-300">Happy Clients</p>
+            <h4 className="text-4xl font-bold text-primary mb-2">10+</h4>
+            <p className="text-gray-600 dark:text-gray-300">Featured Projects</p>
           </div>
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center animate-fade-in">
-            <h4 className="text-4xl font-bold text-primary mb-2">4</h4>
+            <h4 className="text-4xl font-bold text-primary mb-2">4+</h4>
             <p className="text-gray-600 dark:text-gray-300">Certifications</p>
           </div>
         </div>
