@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, MessageCircleCode } from "lucide-react";
 import Profile from "../../assets/Profile.jpg";
 import { TypeAnimation } from 'react-type-animation';
 import { useEffect } from "react";
@@ -27,7 +27,7 @@ export const HeroSection = () => {
                 Vamsi Krishna
               </h1>
               <h3 className="text-xl md:text-2xl text-gray-600 dark:text-gray-300">
-                <TypeAnimation sequence={['Full Stack Web Developer', 2000, 'UI/UX Designer', 2000, 'React Specialist', 2000, 'JavaScript Engineer', 2000]} wrapper="span" speed={50} repeat={Infinity} className="gradient-text font-semibold" />
+                <TypeAnimation sequence={['Full Stack Web Developer', 2000, 'Frontend Engineer', 2000, 'React Specialist', 2000, 'JavaScript Engineer', 2000]} wrapper="span" speed={50} repeat={Infinity} className="gradient-text font-semibold" />
               </h3>
             </div>
             
@@ -46,14 +46,17 @@ export const HeroSection = () => {
             </div>
             
             <div className="flex items-center space-x-5 pt-4" data-aos="fade-up" data-aos-delay="400">
-              <a href="https://github.com/vamsikrishnaummadi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" aria-label="GitHub profile">
+              <a title="Github" href="https://github.com/vamsikrishnaummadi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" aria-label="GitHub profile">
                 <Github size={24} />
               </a>
-              <a href="https://linkedin.com/in/vamsikrishnaummadi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" aria-label="LinkedIn profile">
+              <a title="Linkedin" href="https://linkedin.com/in/vamsikrishnaummadi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" aria-label="LinkedIn profile">
                 <Linkedin size={24} />
               </a>
-              <a href="mailto:vamsikrishnaccbp@gmail.com" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" aria-label="Email me">
+              <a title="Email" href="mailto:vamsikrishnaccbp@gmail.com" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" aria-label="Email me">
                 <Mail size={24} />
+              </a>
+              <a href="https://leetcode.com/u/vamsikrishnaummadi/" title="Leetcode" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors" aria-label="Email me">
+                <MessageCircleCode size={24} />
               </a>
             </div>
           </div>

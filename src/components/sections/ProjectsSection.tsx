@@ -7,57 +7,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 export const ProjectsSection = () => {
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState(true);
   const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
-
-  const displayedProjects = showAll
-    ? projects
-    : projects.filter((project) => project.featured);
-
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: false,
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          // Start revealing projects one by one when section is in view
-          let index = 0;
-          const timer = setInterval(() => {
-            if (index < displayedProjects.length) {
-              setVisibleProjects(prev => {
-                // Make sure the project exists and has an id before adding it
-                const projectId = displayedProjects[index]?.id;
-                if (projectId !== undefined) {
-                  return [...prev, projectId];
-                }
-                return prev;
-              });
-              index++;
-            } else {
-              clearInterval(timer);
-            }
-          }, 400);
-          
-          return () => clearInterval(timer);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, [displayedProjects]);
 
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900/50" ref={sectionRef}>
@@ -73,22 +25,12 @@ export const ProjectsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayedProjects.map((project) => (
-            <div key={project.id} className={`transition-all duration-700 opacity-0 transform translate-y-10 
-              ${visibleProjects.includes(project.id) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {projects.map((project) => (
+            <div key={project.id}>
               <ProjectCard project={project} />
             </div>
           ))}
         </div>
-
-        {!showAll && projects.length > 3 && (
-          <div className="flex justify-center mt-12" data-aos="fade-up" data-aos-delay="600">
-            <Button onClick={() => setShowAll(true)}>
-              <GitBranch className="mr-2 h-4 w-4" />
-              View All Projects
-            </Button>
-          </div>
-        )}
       </div>
     </section>
   );
@@ -102,7 +44,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+          className="w-full h-full object-fit transition-transform duration-500 hover:scale-110"
         />
       </div>
       <div className="p-6">
@@ -132,7 +74,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               </a>
             </Button>
           )}
-          {project.githubUrl && (
+          {project.githubUrl !== "client" && project.githubUrl && (
             <Button size="sm" asChild variant="outline">
               <a
                 href={project.githubUrl}
@@ -141,6 +83,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
               >
                 <Github className="mr-1 h-3 w-3" /> Code
               </a>
+            </Button>
+          )}
+          {project.githubUrl === "client" && (
+            <Button size="sm" asChild variant="outline">
+               <a href="#" target="_blank" rel="noopener noreferrer">Client: {project.client}</a>
             </Button>
           )}
         </div>
